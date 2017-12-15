@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -98,8 +97,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 type = "qq";
                 token = tokened;
                 openid = openId;
-                Toast.makeText(this, "getOtherLogin", Toast.LENGTH_LONG).show();
 //                getOtherLogin();
+//                startActivity(new Intent(MainActivity.this, BrowserActivity.class));
+                startBrowserActivity();
                 mTencent.setAccessToken(token, expires);
                 mTencent.setOpenId(openId);
             }
@@ -144,6 +144,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
             Toast.makeText(MainActivity.this, "登录失败：",
                     Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void startBrowserActivity() {
+        Intent intent = new Intent(this, BrowserActivity.class);
+//        intent.putExtra(BrowserActivity.PARAM_URL, "");
+//        intent.putExtra(BrowserActivity.PARAM_MODE, mode);
+//        intent.putExtra(SonicJavaScriptInterface.PARAM_CLICK_TIME, System.currentTimeMillis());
+        startActivityForResult(intent, -1);
     }
 
     /******************************************
