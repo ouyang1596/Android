@@ -24,7 +24,7 @@ import org.json.JSONObject;
 public class MainActivity extends Activity implements View.OnClickListener {
     private Button login_button_wx;
     private Button login_button_qq;
-    public static final String qq_appid = "1104301257";
+    public static final String qq_appid = "";
     /**
      * 腾讯SDK对象实例
      */
@@ -46,7 +46,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private IWXAPI api;
-    public static final String wx_appid = "wxc2cca9846361b1f6";// 微信appid
+    public static final String wx_appid = "";// 微信appid
 
     public void loginFromWeixin() {
         api = WXAPIFactory.createWXAPI(this, wx_appid, true);

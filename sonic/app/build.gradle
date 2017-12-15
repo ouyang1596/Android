@@ -10,14 +10,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    signingConfigs {
-        custom_keystore {
-            keyAlias 'aliiao'
-            keyPassword 'alttest'
-            storeFile file('F:\\iicall_new.new')
-            storePassword 'alttest'
-        }
-    }
     buildTypes {
         release {
             minifyEnabled true // 是否混淆
@@ -26,7 +18,7 @@ android {
 //            signingConfig signingConfigs.custom_keystore
         }
         debug {
-            signingConfig signingConfigs.custom_keystore
+//            signingConfig signingConfigs.custom_keystore
         }
     }
 }
