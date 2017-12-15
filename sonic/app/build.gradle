@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.mosheng"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        custom_keystore {
+            keyAlias 'aliiao'
+            keyPassword 'alttest'
+            storeFile file('F:\\iicall_new.new')
+            storePassword 'alttest'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true // 是否混淆
+            shrinkResources true // 是否去除无效的资源文件
+//            proguardFiles 'proguard.cfg'
+//            signingConfig signingConfigs.custom_keystore
+        }
+        debug {
+            signingConfig signingConfigs.custom_keystore
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //微信分享、登录、收藏、支付等功能需要的库以及文件
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+}
