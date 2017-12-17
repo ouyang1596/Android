@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.mosheng"
+        applicationId "cn.egoa.sharehelper"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
@@ -12,9 +12,9 @@ android {
     }
     buildTypes {
         release {
-//            minifyEnabled true // 是否混淆
-//            shrinkResources true // 是否去除无效的资源文件
-//            proguardFiles 'proguard.cfg'
+            minifyEnabled true // 是否混淆
+            shrinkResources true // 是否去除无效的资源文件
+            proguardFiles 'proguard-rules.pro'
 //            signingConfig signingConfigs.custom_keystore
         }
         debug {
@@ -28,7 +28,7 @@ dependencies {
     implementation 'com.android.support:support-annotations:23.1.0'
     //微信分享、登录、收藏、支付等功能需要的库以及文件
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
-    implementation 'com.android.support:support-v4:24.2.1'
+    implementation 'com.android.support:support-v4:26.0.0'
     implementation 'com.tencent.sonic:sdk:2.0.0'
     implementation 'com.squareup.okhttp3:okhttp:3.8.1'
     implementation 'com.squareup.okio:okio:1.13.0'
@@ -36,4 +36,8 @@ dependencies {
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.2'
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+    compile 'io.reactivex.rxjava2:rxjava:2.0.5'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }
