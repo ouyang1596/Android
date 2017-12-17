@@ -11,14 +11,13 @@
  *
  */
 
-package vassonic.com.vassonic;
+package cn.egoa.sharehelper.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.WindowManager;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -27,7 +26,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.mosheng.R;
 import com.tencent.sonic.sdk.SonicCacheInterceptor;
 import com.tencent.sonic.sdk.SonicConfig;
 import com.tencent.sonic.sdk.SonicConstants;
@@ -44,6 +42,11 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.egoa.sharehelper.R;
+import cn.egoa.sharehelper.sonic.SonicJavaScriptInterface;
+import cn.egoa.sharehelper.sonic.SonicRuntimeImpl;
+import cn.egoa.sharehelper.sonic.SonicSessionClientImpl;
 
 /**
  * A demo browser activity
@@ -173,6 +176,7 @@ public class BrowserActivity extends Activity {
         } else { // default mode
             webView.loadUrl(url);
         }
+
     }
 
     @Override

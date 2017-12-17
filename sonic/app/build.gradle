@@ -12,8 +12,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true // 是否混淆
-            shrinkResources true // 是否去除无效的资源文件
+//            minifyEnabled true // 是否混淆
+//            shrinkResources true // 是否去除无效的资源文件
 //            proguardFiles 'proguard.cfg'
 //            signingConfig signingConfigs.custom_keystore
         }
@@ -25,13 +25,15 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'com.android.support:support-annotations:23.1.0'
     //微信分享、登录、收藏、支付等功能需要的库以及文件
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation 'com.android.support:support-v4:24.2.1'
-    compile 'com.tencent.sonic:sdk:2.0.0'
-    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    implementation 'com.tencent.sonic:sdk:2.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    implementation 'com.squareup.okio:okio:1.13.0'
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.2'
+
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }

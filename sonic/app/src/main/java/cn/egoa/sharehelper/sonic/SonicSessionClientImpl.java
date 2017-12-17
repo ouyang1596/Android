@@ -11,7 +11,7 @@
  *
  */
 
-package vassonic.com.vassonic;
+package cn.egoa.sharehelper.sonic;
 
 import android.os.Bundle;
 import android.webkit.WebView;

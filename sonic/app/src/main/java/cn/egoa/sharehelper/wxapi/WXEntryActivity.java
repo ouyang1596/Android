@@ -1,4 +1,4 @@
-package com.mosheng.wxapi;
+package cn.egoa.sharehelper.wxapi;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-import vassonic.com.vassonic.MainActivity;
+import cn.egoa.sharehelper.constant.Constant;
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
@@ -28,9 +28,9 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         //
         // MyToast.SystemToast(this, "onCreate()", Toast.LENGTH_LONG);
         // // 通过WXAPIFactory工厂，获取IWXAPI的实例
-        api = WXAPIFactory.createWXAPI(this, MainActivity.wx_appid, true);
+        api = WXAPIFactory.createWXAPI(this, Constant.wx_appid, true);
         // // 将该app注册到微信
-        api.registerApp(MainActivity.wx_appid);
+        api.registerApp(Constant.wx_appid);
         api.handleIntent(getIntent(), this);
     }
 

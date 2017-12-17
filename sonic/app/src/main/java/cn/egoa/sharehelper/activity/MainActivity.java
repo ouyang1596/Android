@@ -1,4 +1,4 @@
-package vassonic.com.vassonic;
+package cn.egoa.sharehelper.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.mosheng.R;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.common.Constants;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -21,10 +20,20 @@ import com.tencent.tauth.UiError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
+import cn.egoa.sharehelper.R;
+import cn.egoa.sharehelper.constant.Constant;
+import cn.egoa.sharehelper.entity.OtherLoginInfo;
+import cn.egoa.sharehelper.net.CustomallBack;
+import cn.egoa.sharehelper.utils.OkHttpUtil;
+import okhttp3.Call;
+import okhttp3.Response;
+
 public class MainActivity extends Activity implements View.OnClickListener {
     private Button login_button_wx;
     private Button login_button_qq;
-    public static final String qq_appid = "";
+
     /**
      * 腾讯SDK对象实例
      */
@@ -34,7 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mTencent = Tencent.createInstance(qq_appid, MainActivity.this);
+        mTencent = Tencent.createInstance(Constant.qq_appid, MainActivity.this);
         initView();
     }
 
@@ -46,10 +55,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private IWXAPI api;
-    public static final String wx_appid = "";// 微信appid
+
 
     public void loginFromWeixin() {
-        api = WXAPIFactory.createWXAPI(this, wx_appid, true);
+        api = WXAPIFactory.createWXAPI(this, Constant.wx_appid, true);
         final SendAuth.Req req = new SendAuth.Req();
         req.scope = "snsapi_userinfo";
         req.state = "none";
@@ -154,9 +163,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         startActivityForResult(intent, -1);
     }
 
-    /******************************************
+    /**
      * QQ登录
-     *************************************/
+     * */
     private void updateUserInfo() {
         if (mTencent.isSessionValid()) {
             IUiListener listener = new IUiListener() {
@@ -182,7 +191,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         }
 //                        ApplicationBase.ctx.sendBroadcast(new Intent(BoardCastContacts.USERDETAIL_USERINFO_UPDATE));
                     } catch (JSONException e) {
-                        e.printStackTrace();
                     }
 
                 }
@@ -200,7 +208,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_button_wx:
-                loginFromWeixin();
+                OkHttpUtil.okGet("https://api.egoa.cn/sys/init.php", new CustomallBack() {
+                    @Override
+                    public void onErroe(Call call, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onComplete(Call call, Response response) {
+
+                    }
+                });
+//                loginFromWeixin();
                 break;
             case R.id.login_button_qq:
                 onClickLogin();

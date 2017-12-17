@@ -1,4 +1,4 @@
-package vassonic.com.vassonic;
+package cn.egoa.sharehelper.entity;
 
 public class OtherLoginInfo
 {

@@ -1,4 +1,4 @@
-package vassonic.com.vassonic;
+package cn.egoa.sharehelper.utils;
 
 /**
  * Created by jianghua on 2017/7/9 0009.
@@ -31,8 +31,8 @@ public class OkHttpUtil {
 //                    .addHeader("Connection", "keep-alive")
 //                    .addHeader("Accept", "*/*")
 //                    .addHeader("Content-Type", "application/json; charset=UTF-8")//不能加
-                            .addHeader("User-Agent", "")
-                            .addHeader("X-API-UA", "")
+                            .addHeader("User-Agent", "cn.egoa.sharehelper (Android; OS/16; Branchs W818;) Ver/2.2.7 Device/480x854 Ca/0")
+                            .addHeader("X-API-UA", "cn.egoa.sharehelper (Android; OS/16; Branchs W818;) Ver/2.2.7 Device/480x854 Ca/0")
                             .addHeader("X-API-USERID","")
                             .addHeader("X-API-TOKEN","")
                             .build();
@@ -60,8 +60,8 @@ public class OkHttpUtil {
 ////                    .addHeader("Connection", "keep-alive")
 ////                    .addHeader("Accept", "*/*")
 ////                    .addHeader("Content-Type", "application/json; charset=UTF-8")//不能加
-//                    .addHeader("User-Agent", HttpNet.getUserAgent())
-//                    .addHeader("X-API-UA", HttpNet.getUserAgent())
+//                    .addHeader("User-Agent","cn.egoa.sharehelper (Android; OS/16; Branchs W818;) Ver/2.2.7 Device/480x854 Ca/0" /*HttpNet.getUserAgent()*/)
+//                    .addHeader("X-API-UA","cn.egoa.sharehelper (Android; OS/16; Branchs W818;) Ver/2.2.7 Device/480x854 Ca/0"/* HttpNet.getUserAgent()*/)
 //                    .addHeader("X-API-USERID", SharePreferenceHelp.getInstance(ApplicationBase.ctx).getStringValue("userid"))
 //                    .addHeader("X-API-TOKEN", SharePreferenceHelp.getInstance(ApplicationBase.ctx).getStringValue("token"))
 //                    .build();
@@ -77,7 +77,6 @@ public class OkHttpUtil {
      */
     public static void okGet(String url, Callback responseCallback) {
         Request request = new Request.Builder().url(url).build();
-
         //根据Request对象发起Get同步Http请求
         getIntance().newCall(request).enqueue(responseCallback);
     }
