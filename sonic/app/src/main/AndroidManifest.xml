@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,8 +63,10 @@
             android:name="vassonic.com.vassonic.BrowserActivity"
             android:screenOrientation="portrait" />
         -->
-        <activity android:name=".activity.TipsActivity"
+        <activity
+            android:name=".activity.TipsActivity"
             android:theme="@style/transparentActivity"></activity>
+        <service android:name=".Service.AppService" />
     </application>
 
 </manifest>

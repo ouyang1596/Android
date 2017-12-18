@@ -1,6 +1,5 @@
 package cn.egoa.sharehelper.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,21 +15,22 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
 import cn.egoa.sharehelper.R;
 import cn.egoa.sharehelper.constant.Constant;
 import cn.egoa.sharehelper.entity.OtherLoginInfo;
-import cn.egoa.sharehelper.net.CustomallBack;
-import cn.egoa.sharehelper.utils.OkHttpUtil;
-import okhttp3.Call;
-import okhttp3.Response;
+import cn.egoa.sharehelper.net.HttpNet;
+import cn.egoa.sharehelper.rxbus.RxBus;
+import cn.egoa.sharehelper.rxbus.event.ChangeEvent;
+import cn.egoa.sharehelper.utils.LogUtil;
+import cn.egoa.sharehelper.utils.RxUtil;
+import cn.egoa.sharehelper.utils.ToastUtil;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends RxAppCompatActivity implements View.OnClickListener {
     private Button login_button_wx;
     private Button login_button_qq;
 
@@ -45,12 +45,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         mTencent = Tencent.createInstance(Constant.qq_appid, MainActivity.this);
         initView();
+        RxBus.getDefault()
+                .toObservable(ChangeEvent.class)
+                .compose(RxUtil.activityLifecycle(this))
+                .doOnNext(event -> me(event))
+                .subscribe();
+        LogUtil.v(HttpNet.getUserAgent());
+    }
+
+    private void me(ChangeEvent c) {
+        ToastUtil.showLongToast(c.getString("name"));
     }
 
     private void initView() {
-        login_button_wx = findViewById(R.id.login_button_wx);
+        login_button_wx = (Button) findViewById(R.id.login_button_wx);
         login_button_wx.setOnClickListener(this);
-        login_button_qq = findViewById(R.id.login_button_qq);
+        login_button_qq = (Button) findViewById(R.id.login_button_qq);
         login_button_qq.setOnClickListener(this);
     }
 
@@ -165,7 +175,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     /**
      * QQ登录
-     * */
+     */
     private void updateUserInfo() {
         if (mTencent.isSessionValid()) {
             IUiListener listener = new IUiListener() {
@@ -208,17 +218,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_button_wx:
-                OkHttpUtil.okGet("https://api.egoa.cn/sys/init.php", new CustomallBack() {
-                    @Override
-                    public void onErroe(Call call, IOException e) {
-
-                    }
-
-                    @Override
-                    public void onComplete(Call call, Response response) {
-
-                    }
-                });
+//                OkHttpUtil.okGet("https://api.egoa.cn/sys/init.php", new CustomallBack() {
+//                    @Override
+//                    public void onErroe(Call call, IOException e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onComplete(Call call, Response response) {
+//
+//                    }
+//                });
 //                loginFromWeixin();
                 break;
             case R.id.login_button_qq:

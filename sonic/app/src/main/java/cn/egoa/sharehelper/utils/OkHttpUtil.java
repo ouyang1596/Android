@@ -7,6 +7,7 @@ package cn.egoa.sharehelper.utils;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import cn.egoa.sharehelper.net.HttpNet;
 import okhttp3.Callback;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -31,10 +32,10 @@ public class OkHttpUtil {
 //                    .addHeader("Connection", "keep-alive")
 //                    .addHeader("Accept", "*/*")
 //                    .addHeader("Content-Type", "application/json; charset=UTF-8")//不能加
-                            .addHeader("User-Agent", "cn.egoa.sharehelper (Android; OS/16; Branchs W818;) Ver/2.2.7 Device/480x854 Ca/0")
-                            .addHeader("X-API-UA", "cn.egoa.sharehelper (Android; OS/16; Branchs W818;) Ver/2.2.7 Device/480x854 Ca/0")
-                            .addHeader("X-API-USERID","")
-                            .addHeader("X-API-TOKEN","")
+                            .addHeader("User-Agent", HttpNet.getUserAgent())
+                            .addHeader("X-API-UA", HttpNet.getUserAgent())
+                            .addHeader("X-API-USERID", "")
+                            .addHeader("X-API-TOKEN", "")
                             .build();
                     return chain.proceed(request);
                 }

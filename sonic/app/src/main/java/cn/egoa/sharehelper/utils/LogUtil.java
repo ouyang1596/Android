@@ -7,12 +7,12 @@ import android.util.Log;
 /**
  * Created by SIYISONG on 2017/12/16.
  */
-public class LogUtils {
+public class LogUtil {
     static String className;//类名
     static String methodName;//方法名
     static int lineNumber;//行数
 
-    private LogUtils() {
+    private LogUtil() {
         /* Protect from instantiations */
     }
 
@@ -99,9 +99,7 @@ public class LogUtils {
     public static void wtf(String message) {
         if (!isDebuggable())
             return;
-
         getMethodNames(new Throwable().getStackTrace());
         Log.wtf(className, createLog(message));
     }
-
 }
