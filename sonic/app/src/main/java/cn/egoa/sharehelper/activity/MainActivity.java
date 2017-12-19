@@ -17,12 +17,18 @@ import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
+import org.greenrobot.greendao.query.QueryBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
+import cn.egoa.sharehelper.ApplicationBase;
 import cn.egoa.sharehelper.R;
 import cn.egoa.sharehelper.constant.Constant;
 import cn.egoa.sharehelper.entity.OtherLoginInfo;
+import cn.egoa.sharehelper.grendaoentity.User;
+import cn.egoa.sharehelper.grendaoentity.UserDao;
 import cn.egoa.sharehelper.net.HttpNet;
 import cn.egoa.sharehelper.rxbus.RxBus;
 import cn.egoa.sharehelper.rxbus.event.ChangeEvent;
@@ -51,7 +57,23 @@ public class MainActivity extends RxAppCompatActivity implements View.OnClickLis
                 .doOnNext(event -> me(event))
                 .subscribe();
         LogUtil.v(HttpNet.getUserAgent());
+//        UserDao userDao = ((ApplicationBase) getApplication()).getDaoSession().getUserDao();
+//        User mUser = new User();
+//        mUser.setName("hello");
+//        mUser.setAge(18);
+//        userDao.insert(mUser);
+//
+//        userDao.loadAll();//查询所有
+//        QueryBuilder<User> qb = userDao.queryBuilder();
+//        qb.where(UserDao.Properties.Age.eq(18)).orderAsc(UserDao.Properties.Age);
+//        List<User> list = qb.list();
+//        for(int i=0;i<list.size();i++){
+//            User user = list.get(i);
+//            LogUtil.v("name=="+user.getName());
+//        }
     }
+
+    private UserDao userDao;
 
     private void me(ChangeEvent c) {
         ToastUtil.showLongToast(c.getString("name"));
