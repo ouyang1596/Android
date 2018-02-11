@@ -21,6 +21,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.List;
 
 import cn.egoa.sharehelper.ApplicationBase;
@@ -29,12 +30,16 @@ import cn.egoa.sharehelper.constant.Constant;
 import cn.egoa.sharehelper.entity.OtherLoginInfo;
 import cn.egoa.sharehelper.grendaoentity.User;
 import cn.egoa.sharehelper.grendaoentity.UserDao;
+import cn.egoa.sharehelper.net.CustomallBack;
 import cn.egoa.sharehelper.net.HttpNet;
 import cn.egoa.sharehelper.rxbus.RxBus;
 import cn.egoa.sharehelper.rxbus.event.ChangeEvent;
 import cn.egoa.sharehelper.utils.LogUtil;
+import cn.egoa.sharehelper.utils.OkHttpUtil;
 import cn.egoa.sharehelper.utils.RxUtil;
 import cn.egoa.sharehelper.utils.ToastUtil;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class MainActivity extends RxAppCompatActivity implements View.OnClickListener {
     private Button login_button_wx;
@@ -240,17 +245,17 @@ public class MainActivity extends RxAppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_button_wx:
-//                OkHttpUtil.okGet("https://api.egoa.cn/sys/init.php", new CustomallBack() {
-//                    @Override
-//                    public void onErroe(Call call, IOException e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onComplete(Call call, Response response) {
-//
-//                    }
-//                });
+                OkHttpUtil.okGet("https://api.egoa.cn/sys/init.php", new CustomallBack() {
+                    @Override
+                    public void onErroe(Call call, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onComplete(Call call, Response response) {
+
+                    }
+                });
 //                loginFromWeixin();
                 break;
             case R.id.login_button_qq:
